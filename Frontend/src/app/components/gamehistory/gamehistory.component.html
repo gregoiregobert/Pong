@@ -1,0 +1,7 @@
+<div class="max-h-full">
+	<li *ngFor="let game of GameHistory" class="flex">
+		<div class="w-screen my-1 grid place-items-center">
+			<app-game-elem [Gameid]="game" [Userid]="id" class="w-4/6"></app-game-elem>
+		</div>
+	</li>
+</div>

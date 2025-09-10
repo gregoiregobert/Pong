@@ -1,0 +1,5 @@
+node_modules
+assets
+dist
+prisma/migrations
+dist/tsconfig.build.tsbuildinfo

@@ -1,0 +1,18 @@
+<div class="block" >
+	<div class="bg-white w-30 border border-gray-300 rounded-lg flex flex-col text-sm py-4 px-2 text-gray-500 shadow-lg ">
+		<div  class="text-black">
+			{{status}}
+		</div>
+		<a  href="/user/?id={{id}}" class="flex hover:bg-gray-100 py-1 px-2 rounded hover:underline hover:underline-offset-2 cursor-pointer">
+			View profile
+		</a>
+		<div (click)="sendMessage()" class="flex hover:bg-gray-100 py-1 px-2 rounded hover:underline hover:underline-offset-2 cursor-pointer">
+			Send message
+		</div>
+		<div (click)="inviteToPlay()" class="flex hover:bg-gray-100 py-1 px-2 rounded hover:underline hover:underline-offset-2 cursor-pointer">
+			Invite to a game
+		</div>
+		<div (click)="deleteFriend()" class="flex hover:bg-gray-100 py-1 px-2 rounded hover:underline hover:underline-offset-2 cursor-pointer">
+			Delete friend
+		</div>
+</div>

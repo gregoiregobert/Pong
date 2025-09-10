@@ -1,0 +1,46 @@
+<app-headerbar></app-headerbar>
+
+<div class="container">
+
+	<mat-card style="min-width: 620px; ">
+		<div style="display: flex; flex-direction: row;">
+			<div>
+				<div>
+					<span style="display: flex; flex-direction: column; align-items: baseline;">
+						<h2 style="font-size: 1.5em;">My Chatrooms</h2>
+						<small style="margin-left:10px;">Logged in as <strong>{{ login }}</strong></small>
+					</span>					
+					<button mat-button [routerLink]="'/create-room'">Create new Room</button>
+				</div>
+
+				<div class="rooms">
+					<mat-selection-list hideSingleSelectionIndicator [multiple]="false" (selectionChange)="onSelectRoom($event)">
+						<mat-list-option *ngFor="let room of (room$ | async)" [value]="room">
+							<strong>{{room.name}}</strong>
+							<mat-divider></mat-divider>
+						</mat-list-option>
+					</mat-selection-list>
+				</div>
+			</div>
+		
+			<div class="chatroom">
+				<app-chat-room *ngIf="selectedRoom" [chatRoom]="selectedRoom"></app-chat-room>
+			</div>
+		
+		</div>
+
+		<div class="option-user" *ngIf="option">
+			<app-option-user></app-option-user>
+		</div>
+		
+	</mat-card>
+	
+</div>
+
+<ng-template #no_rooms>
+	<div>
+		<mat-error>No Chatrooms for you so far, please create one or get invite</mat-error>
+	</div>
+
+</ng-template>
+

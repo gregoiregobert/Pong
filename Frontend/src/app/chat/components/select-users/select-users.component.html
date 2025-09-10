@@ -1,0 +1,28 @@
+
+<head>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<mat-form-field>
+	<input matInput placeholder="Search User by Login" [matAutocomplete]="auto" [formControl]="searchLogin">
+	<mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="setSelectedUser($event.option.value)">
+		<ng-container>
+			<mat-option *ngFor="let user of filteredUsers" [value]="user">
+				<span>{{user.login}}</span>
+				<small> | id: {{user.id}}</small>
+			</mat-option>
+		</ng-container>
+	</mat-autocomplete>
+</mat-form-field>
+<button mat-button type="button" [disabled]="!selectedUser" (click)="addUserToForm()">Add User</button>
+
+<mat-chip-set *ngIf="users && users.length > 0; else no_users">
+	<mat-chip *ngFor="let user of users" (removed)="removeUserFromForm(user)">
+		{{user.login}}
+		<mat-icon matChipRemove>cancel</mat-icon>
+	</mat-chip>
+</mat-chip-set>
+
+<ng-template #no_users>
+	<mat-error *ngIf="!public">No Users added so far</mat-error>
+</ng-template>

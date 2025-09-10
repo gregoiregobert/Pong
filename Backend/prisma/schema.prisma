@@ -1,0 +1,118 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                     Int             @id @default(autoincrement())
+  email                  String          @unique
+  login                  String          @unique
+  login42                String          @unique
+  hash                   String
+  access_token           String          @default("")
+  is2faenabled           Boolean         @default(false)
+  is2favalidated         Boolean         @default(false)
+  is_ingame              Boolean         @default(false)
+  twofacode              String          @default("")
+  avatar                 String          @default("")
+  default_avatar         String          @default("")
+  elo                    Int             @default(1000)
+  userStatus             String          @default("OFFLINE")
+  gameHistory            Int[]
+  gamesWon               Int             @default(0)
+  friendList             Int[]           @default([])
+  FriendRequestsEmitted  Int[]           @default([])
+  FriendRequestsReceived Int[]           @default([])
+  rooms                  Room[]          @relation("UserRooms")
+  connectedUser          ConnectedUser[]
+  joinedRoom             JoinedRoom[]
+  Message                Message[]
+  Creators               Room[]          @relation("RoomCreator")
+  AdminRooms             Room[]          @relation("AdminRooms")
+  blockedUsers           User[]          @relation("BlockedUser")
+  blockedByUsers         User[]          @relation("BlockedUser")
+  banInRoom              Room[]          @relation("BanUserRoom")
+  muteInRoom             Room[]          @relation("Muted")
+  PassRoom               Room[]          @relation("PassRoom")
+
+  api_used          Int @default(0)
+  twofa_used        Int @default(0)
+  quit_count        Int @default(0)
+  friends_added     Int @default(0)
+  friends_removed   Int @default(0)
+  name_changed      Int @default(-1)
+  picture_changed   Int @default(0)
+  profiles_searched Int @default(0)
+  cancelled_count   Int @default(0)
+  refused_count     Int @default(0)
+}
+
+model GameInfo {
+  id         Int @id @default(autoincrement())
+  userId1    Int
+  userId2    Int
+  scoreUser1 Int
+  scoreUser2 Int
+  winnerId   Int
+}
+
+enum Status {
+  ONLINE
+  OFFLINE
+  INGAME
+}
+
+model Room {
+  id          Int          @id @default(autoincrement())
+  name        String       @unique
+  description String?
+  created_at  DateTime     @default(now())
+  updated_at  DateTime     @updatedAt
+  users       User[]       @relation("UserRooms")
+  joinedRoom  JoinedRoom[]
+  message     Message[]
+  creator     User         @relation(fields: [creatorId], references: [id], name: "RoomCreator")
+  creatorId   Int
+  admin       User[]       @relation("AdminRooms")
+  public      Boolean
+  password    String?
+  isPass      Boolean
+  RightPass   User[]       @relation("PassRoom")
+  mutedUsers  User[]       @relation("Muted")
+  BanUsers    User[]       @relation("BanUserRoom")
+}
+
+model ConnectedUser {
+  id       Int    @id @default(autoincrement())
+  socketId String
+  user     User   @relation(fields: [userId], references: [id])
+  userId   Int
+}
+
+model JoinedRoom {
+  id       Int    @id @default(autoincrement())
+  socketId String
+  userId   Int
+  roomId   Int
+
+  user User @relation(fields: [userId], references: [id])
+  room Room @relation(fields: [roomId], references: [id])
+}
+
+model Message {
+  id     Int    @id @default(autoincrement())
+  text   String
+  userId Int
+  roomId Int
+
+  user User @relation(fields: [userId], references: [id])
+  room Room @relation(fields: [roomId], references: [id])
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}

@@ -1,0 +1,9 @@
+<span style="display: flex;" [class.ownContainer]="message.user?.id === id">
+	<p [ngClass]="{ownMessage: message.user?.id === id}">
+	  <strong (click)="openOption(message.user)">{{ message.user?.login }}</strong> <br />
+	  <span *ngIf="!isBlocked(message.user?.id)">{{ message.text }}</span>
+	</p>
+</span>
+
+
+

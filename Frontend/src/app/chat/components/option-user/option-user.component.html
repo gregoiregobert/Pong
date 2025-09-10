@@ -1,0 +1,57 @@
+<head>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<mat-card *ngIf="user?.login !== current_user?.login">
+	<mat-list>
+		<mat-list-item><strong>{{ user?.login }}</strong></mat-list-item>
+		<mat-list-item><strong>{{ room?.name }}</strong></mat-list-item>
+
+		<mat-list-item>
+			<button mat-raised-button extended color=primary (click)="inviteToPlay()"><strong>PLAY</strong></button>
+		</mat-list-item>
+
+		<mat-list-item>
+			<button mat-raised-button extended color=primary (click)="goToProfile()"><mat-icon style="margin-left: 5px;">person</mat-icon></button>
+		</mat-list-item>
+
+		<mat-list-item>
+			<button mat-raised-button extended color=primary (click)="directMessage()"><mat-icon style="margin-left: 5px;">sms</mat-icon></button>
+		</mat-list-item>
+
+		<mat-list-item *ngIf="!isUserBlocked">
+			<button mat-stroked-button (click)="blockUser()"><mat-icon style="margin-left: 5px;">visibility_off</mat-icon></button>
+		</mat-list-item>
+
+		<mat-list-item *ngIf="isUserBlocked">
+			<button mat-stroked-button (click)="unblockUser()"><mat-icon style="margin-left: 5px;">visibility</mat-icon></button>
+		</mat-list-item>
+
+		<mat-list-item *ngIf="isCurrentCreator && adminUser">
+			<button mat-stroked-button color=warn (click)="unsetAsAdmin()">Un-admin</button>
+		</mat-list-item>
+
+		<mat-list-item *ngIf="adminCurrent && !adminUser">
+			<button mat-stroked-button color=warn (click)="setAsAdmin()">Admin</button>
+		</mat-list-item>
+
+		<mat-list-item *ngIf="adminCurrent && !isUserCreator && !isUserMuted">
+			<button mat-stroked-button color=warn (click)="muteUser()"><mat-icon style="margin-left: 5px;">volume_off</mat-icon></button>
+		</mat-list-item>
+
+		<mat-list-item *ngIf="!room?.public && adminCurrent && !isUserCreator && isUserInRoom">
+			<button mat-stroked-button color=warn (click)="kickUser()">Kick</button>
+		</mat-list-item>
+
+		<mat-list-item *ngIf="adminCurrent && !isUserCreator && !isUserBan">
+			<button mat-stroked-button color=warn (click)="banUser()"><mat-icon style="margin-left: 5px;">block</mat-icon></button>
+		</mat-list-item>
+
+		<mat-list-item *ngIf="adminCurrent && !isUserCreator && isUserBan">
+			<button mat-stroked-button color=warn (click)="unbanUser()"><mat-icon style="margin-left: 5px;">how_to_reg</mat-icon></button>
+		</mat-list-item>
+
+		
+		<mat-icon (click)="closeOption()">cancel</mat-icon>
+	</mat-list>
+</mat-card>

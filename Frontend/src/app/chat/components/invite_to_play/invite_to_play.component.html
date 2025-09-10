@@ -1,0 +1,14 @@
+
+<head>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<h2 mat-dialog-title>Confirmation</h2>
+<mat-dialog-content>
+	{{ this.login }} has invited you to play! Join?
+</mat-dialog-content>
+<mat-dialog-actions>
+		<button mat-button (click)="yesButton()">Yes</button>
+		<button mat-button (click)="noButton()">No</button>
+		<!-- <button mat-button mat-dialog-close [mat-dialog-close]="true">Ok</button> -->
+</mat-dialog-actions>

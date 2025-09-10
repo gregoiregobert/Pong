@@ -1,0 +1,20 @@
+<!-- <div class ="h-full bg-gradient-to-r from-cyan-600 to-blue-600 flex-row"> -->
+	<!-- <app-headerbar></app-headerbar>
+	<app-logout-button></app-logout-button>
+	<app-twofatogglebar [id]="id"></app-twofatogglebar> -->
+	<!-- <button (contextmenu)="onRightClick($event)"> Right click me </button> -->
+
+	<button mat-button [matMenuTriggerFor]="fileMenu" class="hover:underline hover:underline-offset-4">Settings</button>
+	<mat-menu #fileMenu="matMenu" class="h-30">
+	<mat-button-toggle-group #group="matButtonToggleGroup" [value]="selectedVal" (change)="onValChange(group.value)" >
+		<mat-button-toggle value="disable">
+			Disable 2FA
+		</mat-button-toggle>
+		<mat-button-toggle value="enable">
+			Enable 2FA
+		</mat-button-toggle>
+	</mat-button-toggle-group> 
+	<button mat-menu-item (click)="logout()">Logout</button>
+	</mat-menu>
+<!-- </div> -->
+

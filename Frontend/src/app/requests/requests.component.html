@@ -1,0 +1,21 @@
+
+<app-headerbar></app-headerbar>
+<div class =" bg-gradient-to-r from-cyan-600 to-blue-600 h-screen w-full" >
+
+	<div class="friend-list-container flex flex-col items-center justify-center h-1/2 ">
+		<h2 class="text-2xl  mb-4 font-courgette">Friend Requests Received</h2>
+		<div class="flex space-x-4 mb-20 ">
+	 		 <div class="friend-card" *ngFor="let friendrequest of friendrequestsreceived" class="flex">
+				<app-friendrequest [Id]="friendrequest"></app-friendrequest>
+	  		</div>
+		</div>
+	</div>
+	<div class="friend-list-container flex flex-col items-center justify-center h-1/3">
+		<h2 class="text-2xl mb-4 font-courgette">Friend Requests Sent</h2>
+		<div class="flex space-x-4 ">
+			<div class="friend-card" *ngFor="let friendrequestsent of friendrequestssent" class="flex-none">
+				<app-request-sent [Id]="friendrequestsent"></app-request-sent>
+			</div>
+		</div>
+	</div>
+</div>

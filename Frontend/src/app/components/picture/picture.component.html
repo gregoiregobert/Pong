@@ -1,0 +1,8 @@
+<div class="grid place-items-center">
+
+	<app-error-modal *ngIf="showError" [message]="errorMessage" (onClose)="closeErrorModal()"></app-error-modal>
+	<img class="object-cover rounded-full h-20 w-20 " alt="avatar" src={{avatar}}/>
+	<section *ngIf="name" class="font-courgette text-4xl ">
+		{{name}}
+	</section>
+</div>

@@ -1,0 +1,47 @@
+
+<app-headerbar></app-headerbar>
+<body>
+<div class="h-screen place-items-center bg-gradient-to-r from-cyan-600 to-blue-600">
+	<div class = grid>
+		<button (click)="multiplayerRequest()"> Multiplayer </button>
+		<button (click)="disconnect()"> Disconnect </button>
+		<!-- <button (click)="log()"> Log </button> -->
+		<button [style.background]="getColor()" (click)="changeColor()"> Color </button>
+		<button [style.background]="colorTab[1]" *ngIf = "isOnline && !randomMode" (click)="activateRandom()"> Random OFF</button>
+		<button [style.background]="colorTab[2]" *ngIf = "isOnline && randomMode" (click)="activateRandom()"> Random ON</button>
+
+	</div>
+	<canvas #canvas width="1000" height="640" class="game-board">
+		Warning, your navigator needs to be compatible with canvas!
+	</canvas>
+	<p *ngIf = "matchmaking"> Looking for players... </p>
+	<!-- <p *ngIf = "isOnline && randomMode"> Random Game </p>
+	<p *ngIf = "isOnline && !randomMode"> Normal Game</p> -->
+	<div id="playerNames" class="player-names">
+		<div *ngIf = "paddles[0].login" class="player-name right">{{ paddles[0].login }}</div>
+		<div *ngIf = "paddles[1].login" class="player-name left">{{ paddles[1].login }}</div>
+	</div>
+
+	<div class="pong-rules-container">
+		<button class="pong-rules-button" (click)="showPongRules()">Pong Rules</button>
+	
+		<div *ngIf="showRules" class="pong-rules-popup" >
+		  <div class="close-button" (click)="closePongRules()">X</div>
+		  
+		  <h2>Welcome to the Pong game!</h2>
+		  <ul>
+			<li>Press multiplayer to enter matchmaking.</li>
+			<li>When the matchmaking finds another player, your name will be displayed below the board on the side of your paddle.</li>
+			<li>The game takes 3 seconds to start.</li>
+			<li>The ball will be launched at a random angle.</li>
+			<li>Hitting a paddle will make the ball bounce back. The longer the exchange, the faster the ball goes.</li>
+			<li>If the ball hits the side of the board, the point goes to the player on the opposite side. When one player reaches 10 points, they win the game.</li>
+			<li>The ball is then reset to the middle of the board and initialized to a new angle.</li>
+			<li>If you disconnect, the game will continue, but you can always reconnect to the current game</li>
+			<li>If both players disconnect, the game ends and the one with the highest score wins, nothing happens in case of a tie.</li>
+			<li>You cannot find another game before the end of the current one and only one instance per player is authorized.</li>
+			<li>You get automatically disconnected at the end of the game, press multiplayer to reenter matchmaking.</li>
+		  </ul>
+		</div>
+	</div>
+</div>

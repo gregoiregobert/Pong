@@ -1,0 +1,13 @@
+<main >
+
+	<div (contextmenu)="onRightClick($event)" class="box-border w-44 h-20 bg-blue-600 py-5 px-4 flex space-y-2 cursor-pointer rounded-md hover:bg-[#2555C2] shadow  font-serif " >
+		
+		<img src={{avatar}} alt="avatar" class="object-cover rounded-full h-10 w-10 mx-2">
+		<div class = "grid">
+			<a class="font-henny">{{ name }}</a>
+			
+			<b class="font-gloria text-xs">{{status}}</b>
+		</div>
+	</div>
+	<div #menu [hidden]="!showMenu" class="mx-8" ><app-friend-menu [id]="id" [name]="name"></app-friend-menu></div>
+</main>

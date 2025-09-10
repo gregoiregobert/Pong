@@ -1,0 +1,9 @@
+<div *ngIf="otherId">
+	<div class=" grid grid-rows-1 grid-flow-col p-12 overflow-hidden shadow-lg rounded-xl {{ won ? 'bg-gradient-to-r from-green-700 to-green-500' : 'bg-gradient-to-r from-red-600 to-red-400' }}">
+	<app-picture [id]="Userid"></app-picture>
+	<div class="mx-10 w-20 py-10"> {{score1}}</div>
+	<div class="w-20"> </div>
+	<div class="w-20 py-10"> {{score2}}</div>
+		<app-picture [id]="otherId"></app-picture>
+	</div>
+</div>

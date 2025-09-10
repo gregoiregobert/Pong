@@ -1,0 +1,12 @@
+<div class="max-w-md mt-8 p-6 bg-blue-600 rounded-md shadow-md text-center">
+  <app-error-modal *ngIf="showError" [message]="errorMessage" (onClose)="closeErrorModal()"></app-error-modal>
+    <div class="mb-4">
+        <img class="w-16 h-16 rounded-full mx-auto mb-2" src="{{ avatar }}" alt="Image de l'utilisateur">
+        <h2 class="text-xl font-henny">{{ name }}</h2>
+    </div>
+
+    <div class="flex justify-between space-x-4 font-start">
+        <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded" (click)="accept()">Accept</button>
+        <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded" (click)="deny()">Deny</button>
+    </div>
+</div>

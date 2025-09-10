@@ -1,0 +1,40 @@
+<button class="bg-[#1D5DE8] text-black active:bg-blue-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="toggleModal()">
+	Search profile
+  </button>
+  <app-error-modal *ngIf="showError" [message]="errorMessage" (onClose)="closeErrorModal()"></app-error-modal>
+
+  <form [formGroup]="SearchForm" (submit)="searchUser()">
+
+  <div *ngIf="showModal" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+	<div class="relative w-auto my-6 mx-auto max-w-sm">
+	  <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-[#1382C5] outline-none focus:outline-none">
+		<div class="flex items-start justify-between p-5 border-b border-solid border-gray-600 rounded-t">
+		  <h3 class="text-3xl font-semibold font-henny mt-3">
+			Search profile
+		  </h3>
+		  <button class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" (click)="toggleModal()">
+			<span class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+			  
+			</span>
+		  </button>
+		</div>
+		<div class="relative p-6 flex-auto">
+			<div class="md:w-2/3 mt-4">
+					<input (keydown.enter)="enterKey()" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-cyan-600" id="names" type="name" placeholder="Enter a name" formControlName="name">
+			</div>
+		  <p class="my-4 text-slate-500 text-lg leading-relaxed">
+		  </p>
+		</div>
+		<div class="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b space-x-10">
+		  <button class="text-red-400 background-transparent font-bold font-henny uppercase px-12 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="closeButton()">
+			Close
+		  </button>
+		  <button class="bg-emerald-500 text-white active:bg-emerald-700 font-henny font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="submit">
+			Add
+		  </button>
+		</div>
+	  </div>
+	</div>
+  </div>
+  <div *ngIf="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
+</form>

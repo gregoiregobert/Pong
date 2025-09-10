@@ -1,0 +1,14 @@
+
+
+mat-card {
+	background-color: #363c41;
+	
+	mat-list {
+	  display: table;
+	  align-items: center;
+  
+		mat-list-item {
+			display: table-cell;
+		}
+	}
+}
