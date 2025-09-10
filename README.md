@@ -29,34 +29,34 @@ A fullstack project that brings the legendary **Pong** game to the web, with mod
 ### Prerequisites
 
 - **Node Package Manager (NPM)**  
-  text: `brew install npm`  
+  ``` `brew install npm`  
   or  
-  text: `brew install node`
+  ``` `brew install node`
 
 - **NestJS CLI (backend framework)**  
-  text: `npm install -g @nestjs/cli`
+  ``` `npm install -g @nestjs/cli`
 
 - **Angular CLI (frontend framework)**  
-  text: `npm install -g @angular/cli`
+  ``` `npm install -g @angular/cli`
 
 ### Makefile commands
 
 - **make** – Build and launch containers (does not remove cache or volumes)  
-  text: `make`  
+  ``` `make`  
 
 - **make stop** – Stop containers  
-  text: `make stop`  
+  ``` `make stop`  
 
 - **make clean** – Stop containers and clean resources (including cache, but not volumes)  
-  text: `make clean`  
+  ``` `make clean`  
 
 - **make fclean** – Stop containers and clean all resources including volumes  
-  text: `make fclean`  
+  ``` `make fclean`  
 
 - **make re** – Run `fclean` then `make`  
-  text: `make re`  
+  ``` `make re`  
 
-Access the app at: [http://localhost:3000](http://localhost:3000)  
+Access the app at: [http://localhost:4200](http://localhost:4200)  
 
 ---
 
